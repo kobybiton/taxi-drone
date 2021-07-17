@@ -14,9 +14,7 @@ export default new Vuex.Store({
     },
     mutations: { // change state from here
         updateTicker(state) {
-            console.log('updateTicker commited')
             state.ticker++;
-            console.log(`${state.ticker} = state ticker`)
             if (state.ticker >= TOTAL_SIMULATION_TIME && state.tickerInterval) {
                 clearInterval(state.tickerInterval); // end simulation
             }
@@ -24,7 +22,6 @@ export default new Vuex.Store({
     },
     actions: { // call mutations that change the state
         init({ state, commit }) { // initializing general app stats
-            console.log('store init step 2')
             state.tickerInterval = setInterval(() => commit('updateTicker'), 10000);
             for (let i = 0; i < NUMBER_OF_ALTITUDES; i++) {
                 state.altitudes.push(true);

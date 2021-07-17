@@ -17,18 +17,13 @@
         watch: {
             "$store.state.ticker"(val, old) {
                 // ticker changed
-                console.log(`step 6, ticker changed (in time set(60000)) after all drones created and wait for passenger`)
-                console.log(`val = ${val}`)
-                console.log(`old = ${old}`)
                 this.onUpdate(val - old);
             }
         },
         methods: {
             onUpdate(interval) {
-                console.log('onUpdate called')
                 if (this.passengerArrivalTime > 0) {
                     this.passengerArrivalTime -= interval;
-
                     if (this.passengerArrivalTime === 0) {
                         console.log(`${new Date().toLocaleTimeString()}: person arrived at drone ${this.id}`);
                     }
@@ -52,7 +47,6 @@
                 }
             },
             onLanding() {
-                //console.log('onLanding called step 4')
                 this.timeToLand = null;
                 this.passengerArrivalTime = null;
                 this.isInAir = false;
@@ -68,9 +62,7 @@
                 this.waitForPassenger();
             },
             waitForPassenger() {
-                //console.log('waitForPassenger step 5')
                 this.passengerArrivalTime = Math.floor(Math.random() * PASSENGER_ARRIVAL_TIME_MAX) + PASSENGER_ARRIVAL_TIME_MIN;
-                //console.log(`${this.passengerArrivalTime} - passengerArrivalTime`)
             },
             prepareForDeparture() {
                 this.$store.dispatch('reserveAltitude').then(altitude => {
@@ -92,7 +84,6 @@
             }
         },
         created() {
-            console.log('drone created step 3')
             this.onLanding();
         }
     }

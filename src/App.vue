@@ -11,7 +11,6 @@
 
   export default {
     created() {
-      console.log('app created step 1')
       this.$store.dispatch('init');
     },
     components: {
