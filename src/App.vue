@@ -1,38 +1,21 @@
 <template>
   <div id="app">
     <img alt="Vue logo" src="./assets/logo.png">
-
-    <Drone/>
+    <app-drone v-for="i in $store.state.numberOfDrones" :key="i" :id="i" />
   </div>
 </template>
 
 <script>
-
-  import Drone from './components/Drone.vue'
-  //import { TOTAL_SIMULATION_TIME } from './constants'
-  import { AVG_PASSENGER_ARRIVAL_TIME } from './constants'
-  //import CentralControl from './services/centralControlSystemService';
+  // appDrone - identify as an app component
+  import AppDrone from './components/Drone.vue';
 
   export default {
-    name: 'App',
+    created() {
+      console.log('app created step 1')
+      this.$store.dispatch('init');
+    },
     components: {
-      Drone
-    },
-    data() {
-      return {
-        currentTime: 0
-      }
-    },
-    mounted() {
-/*      setInterval(() => {
-        if(this.currentTime !== TOTAL_SIMULATION_TIME) {
-          this.currentTime++
-        } else {
-          return;
-        }
-        console.log(this.currentTime);
-      }, 100);*/
-    console.log(AVG_PASSENGER_ARRIVAL_TIME)
+      AppDrone
     },
   }
 </script>
