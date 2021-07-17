@@ -22,7 +22,7 @@ export default new Vuex.Store({
     },
     actions: { // call mutations that change the state
         init({ state, commit }) { // initializing general app stats
-            state.tickerInterval = setInterval(() => commit('updateTicker'), 10000);
+            state.tickerInterval = setInterval(() => commit('updateTicker'), 60000);
             for (let i = 0; i < NUMBER_OF_ALTITUDES; i++) {
                 state.altitudes.push(true);
             }
